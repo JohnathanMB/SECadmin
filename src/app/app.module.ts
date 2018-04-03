@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {LoginPageModule} from "../pages/login/login.module";
+import {AddInventarioPageModule} from '../pages/add-inventario/add-inventario.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    LoginPageModule,
+    AddInventarioPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
