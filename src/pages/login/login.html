@@ -24,18 +24,19 @@
     </ion-card-header>
     
     <ion-card-content>
+    <form action="/login">
         <ion-list no-lines>
             <ion-item>
                 <ion-label floating>
-                    Username
+                    Ingrese Su Correo
                 </ion-label>
-                <ion-input type="text" #username></ion-input>
+                <ion-input type="email" id="correo" #username></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>
-                    password
+                    Ingrese Su Contraseña
                 </ion-label>
-                <ion-input type="password" #password></ion-input>
+                <ion-input type="password" id="contrasena" #password></ion-input>
             </ion-item>
             <ion-item>
                 <button (click)="goMain()"  ion-button full round>
@@ -44,11 +45,12 @@
             </ion-item>
             
             <ion-item>
-                <button ion-button  block round outline>
+                <button ion-button  block round outline (click)="goOlvideContrasena()">
                     Olvidé la contraseña
                 </button>
             </ion-item>
         </ion-list>
+    </form>
     </ion-card-content>
     
 </ion-card>

@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
 import {AddInventarioPageModule} from '../pages/add-inventario/add-inventario.module';
+import { OlvidarContraseñaPageModule } from '../pages/olvidar-contraseña/olvidar-contraseña.module';
+import { CambiarContraseñaPageModule} from '../pages/cambiar-contraseña/cambiar-contraseña.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {AddInventarioPageModule} from '../pages/add-inventario/add-inventario.mo
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    AddInventarioPageModule
+    AddInventarioPageModule,
+    OlvidarContraseñaPageModule,
+    CambiarContraseñaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
