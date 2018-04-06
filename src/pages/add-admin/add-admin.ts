@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestProvider } from '../../providers/rest/rest'
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
- * Generated class for the AddInventarioPage page.
+ * Generated class for the AddAdminPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +11,17 @@ import { RestProvider } from '../../providers/rest/rest'
 
 @IonicPage()
 @Component({
-  selector: 'page-add-inventario',
-  templateUrl: 'add-inventario.html',
+  selector: 'page-add-admin',
+  templateUrl: 'add-admin.html',
 })
-export class AddInventarioPage {
+export class AddAdminPage {
 
-  private medicamento = {
-    id_codigo_inventario: '',
+  private admin = {
+    id_administrador: '',
+    id_tipo_documento: '',
+    correo: '',
     nombre: '',
-    unidades_disponibles: '',
-    fecha_de_vencimiento: '',
-    laboratorio: '',
-    precio_unidad: '',
-    categoria: ''
-
+    fecha_de_nacimiento: ''
   }
 
   constructor(public navCtrl: NavController, 
@@ -33,13 +30,12 @@ export class AddInventarioPage {
             ) {
   }
 
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddInventarioPage');
+    console.log('ionViewDidLoad AddAdminPage');
   }
-  
-  addMedicamento(){
-    this.restProvider.addMedicamento(this.medicamento).then((result) => {
+
+  addAdmin(){
+    this.restProvider.addAdmin(this.admin).then((result) => {
       console.log(result);
     }, (err) => { 
       console.log(err);

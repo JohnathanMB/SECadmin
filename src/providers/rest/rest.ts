@@ -15,8 +15,8 @@ export class RestProvider {
   }
 
   apiUrl = 'http://api-rest-sec.herokuapp.com';
-  apiUrlLogin = 'http://api-rest-sec.herokuapp.com/u/login';
-  apiUrlRegistrar = 'http://api-rest-sec.herokuapp.com/u/signup';
+  apiUrlLogin = 'http://api-rest-sec.herokuapp.com/e/login';
+  //apiUrlRegistrar = 'http://api-rest-sec.herokuapp.com/u/signup';
   apiUrlRegistrarAdmin = 'http://api-rest-sec.herokuapp.com/e/administrador';
   apiUrlRegistrarRepartidor ='http://api-rest-sec.herokuapp.com/e/repartidor';
   apiUrLoginEmpleado= 'http://api-rest-sec.herokuapp.com/e/repartidor';
@@ -27,9 +27,42 @@ export class RestProvider {
   apiUrlEliminarMedicamento = 'http://api-rest-sec.herokuapp.com/m/medicamentos/:id';
 
 
-  saveMedicamento(data){
+  addMedicamento(data){
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrlPostMedicamento, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  login(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrlLogin, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  addAdmin(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrlRegistrarAdmin, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  addRepartidor(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrlRegistrarRepartidor, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {

@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>login</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -18,41 +18,65 @@
 <ion-content>
 
     <ion-card>
-    
-    <ion-card-header>
-        LOGIN
-    </ion-card-header>
-    
-    <ion-card-content>
-    <form action="./login" method="POST">
-        <ion-list no-lines>
-            <ion-item>
-                <ion-label floating>
-                    Ingrese Su Correo
-                </ion-label>
-                <ion-input type="email" id="correo" #username></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>
-                    Ingrese Su Contraseña
-                </ion-label>
-                <ion-input type="password" id="contrasena" #password></ion-input>
-            </ion-item>
-            <ion-item>
-                <button (click)="goMain()"  ion-button full round>
-                    Ingresar
-                </button>
-            </ion-item>
-            
-            <ion-item>
-                <button ion-button  block round outline (click)="goOlvideContrasena()">
-                    Olvidé la contraseña
-                </button>
-            </ion-item>
-        </ion-list>
-    </form>
-    </ion-card-content>
-    
-</ion-card>
-    
+
+        <ion-card-header>
+            LOGIN
+        </ion-card-header>
+
+        <ion-card-content>
+
+            <ion-list no-lines>
+                <form (ngSubmit)="login()">
+                    <ion-item>
+                        <ion-label>Tipo Empleado</ion-label>
+                        <ion-select [(ngModel)]="tipo" 
+                                    name='tipo'>
+                            <ion-option value="administrador">Adminitrador</ion-option>
+                            <ion-option value="repartidor">repartidor</ion-option>
+                            <ion-option value="empleado">Empleado</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>
+                            Ingrese Su Correo
+                        </ion-label>
+                        <ion-input type="email" 
+                                    name="correo" 
+                                    [(ngModel)]="correo" 
+                                    #username></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>
+                            Ingrese Su Contraseña
+                        </ion-label>
+                        <ion-input type="password" 
+                                    [(ngModel)]="contrasena" 
+                                    name="contrasena" 
+                                    #password></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <button type="submit"
+                                ion-button 
+                                full 
+                                round>
+                            Ingresar
+                        </button>
+                    </ion-item>
+
+                    <ion-item>
+                        <button ion-button 
+                                block 
+                                round 
+                                outline 
+                                (click)="goOlvideContrasena()">
+                            Olvidé la contraseña
+                        </button>
+                    </ion-item>
+                </form>
+            </ion-list>
+
+        </ion-card-content>
+
+    </ion-card>
+
 </ion-content>
