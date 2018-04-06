@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest'
 
 /**
  * Generated class for the AddInventarioPage page.
@@ -15,11 +16,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddInventarioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private medicamento = {
+    id_codigo_inventario: '',
+    nombre: '',
+    unidades_disponibles: '',
+    fecha_de_vencimiento: '',
+    laboratorio: '',
+    precio_unidad: '',
+    categoria: ''
+
   }
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public restProvider: RestProvider
+            ) {
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddInventarioPage');
+  }
+  
+  saveMedicamento(){
+    this.restProvider.saveMedicamento(this.medicamento).then((result) => {
+      console.log(result);
+    }, (err) => { 
+      console.log(err);
+    })
   }
 
 }

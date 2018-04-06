@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>addInventario</ion-title>
   </ion-navbar>
 
@@ -23,11 +23,11 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form>
+      <form (ngSubmit)="saveMedicamento()">
         <ion-list no-lines>
           <ion-item>
             <ion-label>Categoria</ion-label>
-            <ion-select>
+            <ion-select [(ngModel)]="medicamento.categoria" name='categoria'>
               <ion-option value="Ninos">Niños</ion-option>
               <ion-option value="Madres">Madres</ion-option>
               <ion-option value="Adultos">Adultos</ion-option>
@@ -40,47 +40,64 @@
 
           <ion-item>
             <ion-label floating>Codigo producto</ion-label>
-            <ion-input type="text" #CodigoProducto></ion-input>
+            <ion-input type="text" 
+                        #CodigoProducto 
+                        name="id_codigo_inventario" 
+                        [(ngModel)]="medicamento.id_codigo_inventario"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label floating>Nombre Producto</ion-label>
-            <ion-input type="text" #NombreProducto></ion-input>
+            <ion-input type="text" 
+                        #NombreProducto 
+                        name="nombre" 
+                        [(ngModel)]="medicamento.nombre"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label floating>Cantidades a Ingresar</ion-label>
-            <ion-input type="number" #Cantidad></ion-input>
+            <ion-input type="number" 
+                        #Cantidad 
+                        [(ngModel)]="medicamento.unidades_disponibles" 
+                        name="unidades_disponibles"></ion-input>
           </ion-item>
 
           <ion-item>
-              <ion-label floating>Fecha De Vencimiento</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY" 
-                            pickerFormat="MM/DD/YYYY"
-                            #date>
-              </ion-datetime>
+            <ion-label floating>Fecha De Vencimiento</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" 
+                          pickerFormat="MM/DD/YYYY" 
+                          #date 
+                          name="fecha_de_vencimiento" 
+                          [(ngModel)]="medicamento.fecha_de_vencimiento">
+            </ion-datetime>
           </ion-item>
 
           <ion-item>
-              <ion-label floating>Laboratorio</ion-label>
-              <ion-input type="text" #Laboratorio></ion-input>
+            <ion-label floating>Laboratorio</ion-label>
+            <ion-input type="text" 
+                        #Laboratorio 
+                        [(ngModel)]="medicamento.laboratorio"
+                        name="laboratorio"></ion-input>
           </ion-item>
 
           <ion-item>
-              <ion-label floating>Precio Por Unidad</ion-label>
-              <ion-input type="number" #Cantidad></ion-input>
+            <ion-label floating>Precio Por Unidad</ion-label>
+            <ion-input type="number" 
+                        #Cantidad 
+                        [(ngModel)]="medicamento.precio_unidad"
+                        name="precio_unidad"></ion-input>
           </ion-item>
 
           <ion-item>
-            <button ion-button round block>
-              Agregar
+            <button ion-button type='submit' round block>
+              Agregar Medicameno
             </button>
           </ion-item>
 
 
         </ion-list>
 
-        
+
 
 
       </form>

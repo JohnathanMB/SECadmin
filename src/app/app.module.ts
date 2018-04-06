@@ -8,10 +8,14 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {LoginPageModule} from "../pages/login/login.module";
+import {LoginPageModule} from '../pages/login/login.module';
 import {AddInventarioPageModule} from '../pages/add-inventario/add-inventario.module';
-import { OlvidarContraseñaPageModule } from '../pages/olvidar-contraseña/olvidar-contraseña.module';
-import { CambiarContraseñaPageModule} from '../pages/cambiar-contraseña/cambiar-contraseña.module';
+import { OlvidarContraseña2PageModule } from '../pages/olvidar-contraseña2/olvidar-contraseña2.module';
+import { CambiarContraseña2PageModule} from '../pages/cambiar-contraseña2/cambiar-contraseña2.module';
+import {AddUserPageModule} from '../pages/add-user/add-user.module';
+import { HttpClientModule } from '@angular/common/http';
+import { RestProvider } from '../providers/rest/rest';
+
 
 @NgModule({
   declarations: [
@@ -19,13 +23,16 @@ import { CambiarContraseñaPageModule} from '../pages/cambiar-contraseña/cambia
     HomePage,
     ListPage
   ],
+  
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     AddInventarioPageModule,
-    OlvidarContraseñaPageModule,
-    CambiarContraseñaPageModule
+    OlvidarContraseña2PageModule,
+    CambiarContraseña2PageModule,
+    AddUserPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,6 +42,7 @@ import { CambiarContraseñaPageModule} from '../pages/cambiar-contraseña/cambia
   ],
   providers: [
     StatusBar,
+    RestProvider,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

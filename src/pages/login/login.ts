@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {HomePage} from '../home/home';
-import { OlvidarContraseñaPage } from '../olvidar-contraseña/olvidar-contraseña';
-import { CambiarContraseñaPage } from '../cambiar-contraseña/cambiar-contraseña';
+import { OlvidarContraseña2Page } from '../olvidar-contraseña2/olvidar-contraseña2';
+import { CambiarContraseña2Page } from '../cambiar-contraseña2/cambiar-contraseña2';
 
 /**
  * Generated class for the LoginPage page.
@@ -48,7 +48,7 @@ export class LoginPage {
             if(this.firstTime){
                 //si es la primera vez que el usuario entra
                 //primero entra a cambiar la contraseña
-                this.navCtrl.setRoot(CambiarContraseñaPage);
+                this.navCtrl.setRoot(CambiarContraseña2Page);
             }else{
                 //si no es la primera vez, entra de una vez a 
                 //la vista principal
@@ -67,7 +67,7 @@ export class LoginPage {
     }
 
     goOlvideContrasena():void{
-        this.navCtrl.setRoot(OlvidarContraseñaPage);
+        this.navCtrl.setRoot(OlvidarContraseña2Page);
     }
 
 }
