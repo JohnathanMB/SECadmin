@@ -18,7 +18,7 @@ export class AddRepartidorPage {
 
   private repartidor = {
     id_repartidor: '',
-    id_tipo_documento: '',
+    tipo_documento: '',
     correo: '',
     nombre: '',
     fecha_de_nacimiento: '',

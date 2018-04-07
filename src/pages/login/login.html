@@ -29,10 +29,10 @@
                 <form (ngSubmit)="login()">
                     <ion-item>
                         <ion-label>Tipo Empleado</ion-label>
-                        <ion-select [(ngModel)]="tipo" 
+                        <ion-select [(ngModel)]="log.tipo" 
                                     name='tipo'>
                             <ion-option value="administrador">Adminitrador</ion-option>
-                            <ion-option value="repartidor">repartidor</ion-option>
+                            <ion-option value="repartidor">Repartidor</ion-option>
                             <ion-option value="empleado">Empleado</ion-option>
                         </ion-select>
                     </ion-item>
@@ -42,7 +42,7 @@
                         </ion-label>
                         <ion-input type="email" 
                                     name="correo" 
-                                    [(ngModel)]="correo" 
+                                    [(ngModel)]="log.correo" 
                                     #username></ion-input>
                     </ion-item>
                     <ion-item>
@@ -50,7 +50,7 @@
                             Ingrese Su Contraseña
                         </ion-label>
                         <ion-input type="password" 
-                                    [(ngModel)]="contrasena" 
+                                    [(ngModel)]="log.contrasena" 
                                     name="contrasena" 
                                     #password></ion-input>
                     </ion-item>

@@ -45,11 +45,49 @@ export class LoginPage {
     
   login(){
     this.restProvider.login(this.log).then((result) => {
+        this.next(result);
       console.log(result);
+      
     }, (err) => { 
+        this.next(err);
       console.log(err);
     })
   }
+
+  next(result: any):void{
+      switch(result.status){
+          case 200: {
+              this.goMain();
+              break;
+          }
+          case 300: {
+            var alert = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: 'Correo o contraseña incorrecta',
+                buttons: ['0k']
+            });
+            alert.present();
+            return;
+          }
+          case 201: {
+              this.goChangePass();
+              break;
+          }
+          default:{
+            var alert = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: 'Se Ha Producido Un Problema, Intente de Nuevo Más Tarde',
+                buttons: ['0k']
+            });
+            alert.present();
+            return;
+          }
+      }
+  }
+
+  
+
+
 
     
     goMain():void{
@@ -85,6 +123,22 @@ export class LoginPage {
 
     goOlvideContrasena():void{
         this.navCtrl.setRoot(OlvidarContraseña2Page);
+    }
+
+    goChangePass():void{
+        this.navCtrl.setRoot(CambiarContraseña2Page);
+    }
+
+    validate(data: any):boolean {
+        var booleanValidte: boolean = true;
+        if(data.correo=''){
+          booleanValidte = false;
+        }else if(data.tipo=''){
+          booleanValidte = false;
+        }else if (data.contrasena=''){
+          booleanValidte = false;
+        }
+        return booleanValidte;
     }
 
 }
