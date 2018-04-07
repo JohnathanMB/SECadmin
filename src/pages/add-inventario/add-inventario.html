@@ -23,7 +23,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form (ngSubmit)="addMedicamento()">
+      <form (ngSubmit)="addMedicamento()" enctype="application/x-www-form-urlencoded">
         <ion-list no-lines>
           <ion-item>
             <ion-label>Categoria</ion-label>
@@ -42,16 +42,18 @@
             <ion-label floating>Codigo producto</ion-label>
             <ion-input type="text" 
                         #CodigoProducto 
+                        [(ngModel)]="medicamento.id_codigo_inventario"
                         name="id_codigo_inventario" 
-                        [(ngModel)]="medicamento.id_codigo_inventario"></ion-input>
+                        ></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label floating>Nombre Producto</ion-label>
             <ion-input type="text" 
                         #NombreProducto 
+                        [(ngModel)]="medicamento.nombre"
                         name="nombre" 
-                        [(ngModel)]="medicamento.nombre"></ion-input>
+                        ></ion-input>
           </ion-item>
 
           <ion-item>
