@@ -38,9 +38,18 @@ export class AddRepartidorPage {
   }
 
   addRepartidor(){
+    this.repartidor = this.completeDefault();
+    if(!this.validateComplete(this.repartidor)){
+      var alert = this.alertCtrl.create({
+        title: 'Campos Vacios',
+        subTitle: 'Por Favor LLenar Los Campos Faltantes',
+        buttons: ['0k']
+      });
+      alert.present();
+      return;
+    }
     this.restProvider.addRepartidor(this.repartidor).then((result) => {
-      this.next(result);
-      //this.todoOk();
+      this.todoOk();
       console.log(result);
     }, (err) => { 
       this.next(err);
@@ -95,6 +104,29 @@ export class AddRepartidorPage {
           break;
         }
     }
+}
+
+completeDefault(): any{
+  var repartidorSend = this.repartidor;
+  if(this.repartidor.fecha_de_nacimiento==''){
+    repartidorSend.fecha_de_nacimiento='0001-01-01';
+  }
+  if(this.repartidor.nombre==''){
+    repartidorSend.nombre='Default';
+  }
+  if(this.repartidor.horarios==''){
+    repartidorSend.horarios='12:00am-8:00am';
+  }
+  return repartidorSend;
+}
+
+validateComplete(object: any):boolean{
+  var validate:boolean = true;
+  if((object.correo=='') || (object.id_repartidor=='' )|| (object.tipo_documento=='')){
+    
+    validate = false;
+  }
+  return validate;
 }
 
 }

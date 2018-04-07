@@ -40,11 +40,21 @@ export class AddInventarioPage {
   }
   
   addMedicamento(){
+    this.medicamento = this.completeDefault();
+    if(!this.validateComplete(this.medicamento)){
+      var alert = this.alertCtrl.create({
+        title: 'Campos Vacios',
+        subTitle: 'Por Favor LLenar Los Campos Faltantes',
+        buttons: ['0k']
+      });
+      alert.present();
+      return;
+    }
     this.restProvider.addMedicamento(this.medicamento).then((result) => {
       
-      //this.next(result);
+      this.todoOk();
       console.log(result);
-      this.todoOk2();
+      
     }, (err) => { 
       this.todoNoOk(err);
       //this.next(err);
@@ -52,7 +62,7 @@ export class AddInventarioPage {
     })
   }
 
-  todoOk2(){
+  todoOk(){
     this.medicamento = {
       id_codigo_inventario: '',
       nombre: '',
@@ -61,7 +71,6 @@ export class AddInventarioPage {
       laboratorio: '',
       precio_unidad: '',
       categoria: ''
-  
     }
     var alert = this.alertCtrl.create({
       title: 'Todo OK',
@@ -85,10 +94,6 @@ export class AddInventarioPage {
 
   next(result: any):void{
     switch(result.status){
-        case 200: {
-            this.todoOk2;
-            break;
-        }
         case 300: {
           var alert = this.alertCtrl.create({
               title: 'Error: ' + result.status,
@@ -103,6 +108,32 @@ export class AddInventarioPage {
           break;
         }
     }
+  }
+
+  completeDefault(): any{
+    var medicamentoSend = this.medicamento;
+    if(this.medicamento.fecha_de_vencimiento==''){
+      medicamentoSend.fecha_de_vencimiento='0001-01-01';
+    }
+    if(this.medicamento.laboratorio==''){
+      medicamentoSend.laboratorio='Default';
+    }
+    if(this.medicamento.precio_unidad==''){
+      medicamentoSend.precio_unidad='0';
+    }
+    if(this.medicamento.unidades_disponibles==''){
+      medicamentoSend.unidades_disponibles='0';
+    }
+    return medicamentoSend;
+  }
+
+  validateComplete(object: any):boolean{
+    var validate:boolean = true;
+    if((object.id_codigo_inventario=='') || (object.nombre=='' ) || (object.categoria=='' )){
+      
+      validate = false;
+    }
+    return validate;
   }
 
 }

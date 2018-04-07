@@ -44,6 +44,16 @@ export class LoginPage {
   }
     
   login(){
+    if(!this.validate(this.log)){
+        var alert = this.alertCtrl.create({
+            title: 'Campos Vacios',
+            subTitle: 'Por Favor LLenar Los Campos Faltantes',
+            buttons: ['0k']
+          });
+          alert.present();
+        return;
+    }
+
     this.restProvider.login(this.log).then((result) => {
         this.next(result);
       console.log(result);
@@ -93,33 +103,6 @@ export class LoginPage {
     goMain():void{
         this.navCtrl.setRoot(HomePage);
     }
-    /*
-    goMain():void{
-        var unameShow = this.uname.value;
-        var upassShow = this.upass.value;
-        //var log = false;
-        if(this.login()){
-            if(this.firstTime){
-                //si es la primera vez que el usuario entra
-                //primero entra a cambiar la contraseña
-                this.navCtrl.setRoot(CambiarContraseña2Page);
-            }else{
-                //si no es la primera vez, entra de una vez a 
-                //la vista principal
-                this.navCtrl.setRoot(HomePage);
-            }
-        
-        }else{
-            var alert = this.alertCtrl.create({
-                title: 'Error',
-                subTitle: 'El usuario '+ unameShow +'o su contraseña no existen',
-                buttons: ['0k']
-            });
-            alert.present();
-        }
-        
-    }
-    */
 
     goOlvideContrasena():void{
         this.navCtrl.setRoot(OlvidarContraseña2Page);
@@ -135,11 +118,11 @@ export class LoginPage {
 
     validate(data: any):boolean {
         var booleanValidte: boolean = true;
-        if(data.correo=''){
+        if(data.correo==''){
           booleanValidte = false;
-        }else if(data.tipo=''){
+        }else if(data.tipo==''){
           booleanValidte = false;
-        }else if (data.contrasena=''){
+        }else if (data.contrasena==''){
           booleanValidte = false;
         }
         return booleanValidte;
