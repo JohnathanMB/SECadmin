@@ -18,7 +18,7 @@ export class AddAdminPage {
 
   private admin = {
     id_administrador: '',
-    id_tipo_documento: '',
+    tipo_documento: '',
     correo: '',
     nombre: '',
     fecha_de_nacimiento: ''
