@@ -34,7 +34,7 @@ export class CambiarContraseña2Page {
             ) {
 
     this.log2.correo = navParams.get('correo');
-    this.log2.contrasena = navParams.get('contrasena');
+    this.log2.contrasena = '';
     this.log2.tipo = navParams.get('tipo');
   }
 

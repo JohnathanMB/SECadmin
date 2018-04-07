@@ -36,8 +36,21 @@ export class AddAdminPage {
   }
 
   addAdmin(){
+    this.admin = this.completeDefault();
+    if(!this.validateComplete(this.admin)){
+      var alert = this.alertCtrl.create({
+        title: 'Campos Vacios',
+        subTitle: 'Por Favor LLenar Los Campos Faltantes',
+        buttons: ['0k']
+      });
+      alert.present();
+      return;
+    }
+    
     this.restProvider.addAdmin(this.admin).then((result) => {
-      this.next(result);
+      //this.next(result);
+      this.todoOk();
+      console.log(this.admin);
       console.log(result);
     }, (err) => { 
       this.next(err);
@@ -73,9 +86,6 @@ export class AddAdminPage {
 
   next(result: any):void{
     switch(result.status){
-        case 200: {
-            this.todoOk;
-        }
         case 300: {
           var alert = this.alertCtrl.create({
               title: 'Error: ' + result.status,
@@ -83,13 +93,32 @@ export class AddAdminPage {
               buttons: ['0k']
           });
           alert.present();
-          return;
+          break;
         }
         default:{
           this.todoNoOk(result);
           break;
         }
     }
+  }
+
+  completeDefault(): any{
+    var adminSend = this.admin;
+    if(this.admin.fecha_de_nacimiento==''){
+      adminSend.fecha_de_nacimiento='0001-01-01';
+    }
+    if(this.admin.nombre==''){
+      adminSend.nombre='Default';
+    }
+    return adminSend;
+  }
+
+  validateComplete(object: any):boolean{
+    var validate:boolean = true;
+    if((object.correo=='') || (object.id_administrador=='' )|| (object.tipo_documento=='')){
+      validate = false;
+    }
+    return validate;
   }
 
 }
