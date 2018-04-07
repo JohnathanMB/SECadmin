@@ -18,22 +18,27 @@
             <ion-card-header>
               Cambiar Contraseña
             </ion-card-header>
-          <form action="/olvidarPass" method="PUT">
+          <form (ngSubmit)="changePass()">
             <ion-list no-lines>
               <ion-item>
-                <ion-label floating>Ingresar Contraseña Actual</ion-label>
-                <ion-input type="password" id="actualPass" #actualPass></ion-input>
-              </ion-item>
-              <ion-item>
                 <ion-label floating>Ingresar nueva contraseña</ion-label>
-                <ion-input type="password" #pass1></ion-input>
+                <ion-input type="password" 
+                            #pass1
+                            ></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label floating>Repita la nueva contraseña</ion-label>
-                <ion-input type="password" id="newPass" #pass2></ion-input>
+                <ion-input type="password" 
+                            id="newPass" 
+                            #pass2
+                            [(ngModel)]="log2.contrasena"
+                            name='constrasena'></ion-input>
               </ion-item>
               <ion-item>
-                  <button ion-button  block round (click)="changePass()">
+                  <button ion-button  
+                          block 
+                          round 
+                          type="submit">
                       Cambiar Contraseña
                   </button>
               </ion-item>

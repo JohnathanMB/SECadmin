@@ -28,7 +28,7 @@ export class LoginPage {
     private log = {
         correo: '',
         tipo: '',
-        contraseña: ''
+        contrasena: ''
     }
 
   constructor(public navCtrl: NavController, 
@@ -75,7 +75,7 @@ export class LoginPage {
           }
           default:{
             var alert = this.alertCtrl.create({
-                title: 'Error',
+                title: 'Error: ' + result.status,
                 subTitle: 'Se Ha Producido Un Problema, Intente de Nuevo Más Tarde',
                 buttons: ['0k']
             });
@@ -126,7 +126,11 @@ export class LoginPage {
     }
 
     goChangePass():void{
-        this.navCtrl.setRoot(CambiarContraseña2Page);
+        this.navCtrl.setRoot(CambiarContraseña2Page,{
+            correo: this.log.correo,
+            contrasena: this.log.contrasena,
+            tipo: this.log.tipo
+        });
     }
 
     validate(data: any):boolean {

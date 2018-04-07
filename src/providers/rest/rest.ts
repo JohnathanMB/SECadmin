@@ -16,8 +16,10 @@ export class RestProvider {
 
   apiUrl = 'http://api-rest-sec.herokuapp.com';
   apiUrlLogin = 'http://api-rest-sec.herokuapp.com/e/login';
+  apiUrlChangePass= 'http://api-rest-sec.herokuapp.com/e/put/login';
   apiUrlRegistrar = 'http://api-rest-sec.herokuapp.com/u/signup';
   apiUrlRegistrarAdmin = 'http://api-rest-sec.herokuapp.com/e/administrador';
+
   apiUrlRegistrarRepartidor ='http://api-rest-sec.herokuapp.com/e/repartidor';
   apiUrlLoginEmpleado= 'http://api-rest-sec.herokuapp.com/e/login';
   apiUrlGetMedicamentos = 'http://api-rest-sec.herokuapp.com/m/medicamentos';
@@ -59,6 +61,19 @@ export class RestProvider {
     });
   }
 
+  changePass(data){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrlChangePass, data)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   addAdmin(data){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -85,5 +100,7 @@ export class RestProvider {
         });
     });
   }
+
+
 
 }

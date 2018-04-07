@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { RestProvider } from '../../providers/rest/rest';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CambiarContraseña2Page page.
@@ -19,8 +21,24 @@ export class CambiarContraseña2Page {
   @ViewChild('pass1') pass1;
   @ViewChild('pass2') pass2;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  private log2 = {
+    correo: '',
+    tipo: '',
+    contrasena: ''
   }
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public alertCtrl: AlertController,
+              public restProvider: RestProvider
+            ) {
+
+    this.log2.correo = navParams.get('correo');
+    this.log2.contrasena = navParams.get('contrasena');
+    this.log2.tipo = navParams.get('tipo');
+  }
+
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CambiarContraseña2Page');
@@ -30,12 +48,19 @@ export class CambiarContraseña2Page {
     if(passA == passB && (passA != '' || passB != '')){
       return true;
     }else{
+      var alertB = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: 'las contraseñas no coinciden '+ this.actualPass.value,
+          buttons: ['0k']
+      });
+      alertB.present();
       return false;
     }
   }
 
-  changePass(){
-    if(this.equalsPass(this.pass1.value, this.pass2.value)){
+  /*
+  validateEqual(passA: string, passB: string){
+    if(this.equalsPass(passA, passB)){
           var alertA = this.alertCtrl.create({
             title: 'Todo ok',
             subTitle: 'Las contraseñas coinciden '+ this.actualPass.value,
@@ -52,5 +77,28 @@ export class CambiarContraseña2Page {
       alertB.present();
     }
   }
+  */
+  
+
+
+  changePass(){
+
+    if(this.equalsPass(this.pass1.value, this.pass2.value)){
+      this.restProvider.changePass(this.log2).then((result) => {
+        
+        console.log(result);
+        this.goMain();
+        
+      }, (err) => { 
+          
+        console.log(err);
+      })
+    }
+  }
+
+
+  goMain():void{
+    this.navCtrl.setRoot(HomePage);
+}
 
 }
