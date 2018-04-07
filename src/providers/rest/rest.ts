@@ -16,7 +16,7 @@ export class RestProvider {
 
   apiUrl = 'http://api-rest-sec.herokuapp.com';
   apiUrlLogin = 'http://api-rest-sec.herokuapp.com/e/login';
-  //apiUrlRegistrar = 'http://api-rest-sec.herokuapp.com/u/signup';
+  apiUrlRegistrar = 'http://api-rest-sec.herokuapp.com/u/signup';
   apiUrlRegistrarAdmin = 'http://api-rest-sec.herokuapp.com/e/administrador';
   apiUrlRegistrarRepartidor ='http://api-rest-sec.herokuapp.com/e/repartidor';
   apiUrLoginEmpleado= 'http://api-rest-sec.herokuapp.com/e/repartidor';
@@ -28,8 +28,11 @@ export class RestProvider {
 
 
   addMedicamento(data){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    console.log(data);
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrlPostMedicamento, JSON.stringify(data))
+      this.http.post(this.apiUrlPostMedicamento,data)
         .subscribe(res => {
           resolve(res);
         }, (err) => {
